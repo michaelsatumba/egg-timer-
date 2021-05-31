@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var secondsPassed = 0
         
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var bar: UIProgressView!
     
     @IBAction func b(_ sender: UIButton) {
@@ -34,16 +35,24 @@ class ViewController: UIViewController {
             secondsPassed += 1
             
             bar.progress = Float(secondsPassed) / Float(totalTime)
+            
+            label2.text = "\(totalTime - secondsPassed)"
         }
        else {
             timer.invalidate()
             label.text = "done"
         
+            label2.text = "done"
+        
             let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
             player = try! AVAudioPlayer(contentsOf: url!)
             player.play()
+        
+            
+        
 
             }
-        }
-
+    }
 }
+
+
